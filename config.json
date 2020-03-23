@@ -1,0 +1,10 @@
+{
+	"clickurl": "http://www.example.com",
+	"format": "Skin - Pushdown",
+
+	"sizes": {
+		"topHeight": 250,
+		"topWidth": 1000,
+		"centerHeight" :460
+	}
+}
