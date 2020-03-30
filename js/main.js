@@ -1,4 +1,7 @@
 
+// if(!document.getElementById('OqEgkJfMBLmI')){
+//   document.getElementById('CHrNjUIxKpXa').style.display='block';
+// }
 
 gsap.set("#base1", {scale:.5, transformOrigin: "center bottom"})
 gsap.set("#baseL", {scale:.2,opacity:0, transformOrigin: "right bottom"})
