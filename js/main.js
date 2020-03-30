@@ -1,7 +1,7 @@
 
-// if(!document.getElementById('OqEgkJfMBLmI')){
-//   document.getElementById('CHrNjUIxKpXa').style.display='block';
-// }
+var plopAudio = document.querySelector(".plop");
+var rocketAudio = document.querySelector(".rocket");
+var jumpAudio = document.querySelector(".jump");
 
 gsap.set("#base1", {scale:.5, transformOrigin: "center bottom"})
 gsap.set("#baseL", {scale:.2,opacity:0, transformOrigin: "right bottom"})
@@ -36,11 +36,14 @@ document.querySelectorAll('.anibtn').forEach(item => {
     } else if (item.className.includes("2")) {
         if (ani2HasStarted === false) {
             ani2HasStarted = true;
+
+            setTimeout(function(){ rocketAudio.play(); }, 700);
             tlAniTwo.play()
             return
         } else if (ani2HasStarted === true) {
             ani2HasStarted = false;
             tlAniTwo.reverse();
+            rocketAudio.pause();
             tlCan.restart();
             tlCan.pause();
             return
@@ -59,20 +62,29 @@ document.querySelectorAll('.anibtn').forEach(item => {
         //     return
         // }
         tlAniThree.restart();
+        jumpAudio.play();;
     }
   })
 })
 
 
+
 var tlAniOne = new TimelineMax();
 
+
 tlAniOne.pause()
+        .add( function(){ plopAudio.play() } )
         .to("#base1", .5, {scale:1, transformOrigin: "center bottom"})
-        .to("#flower1", .5, {opacity:1, delay:.5, transformOrigin: "center bottom"})
+        .add( function(){ plopAudio.play() } )
+        .to("#flower1", .5, {opacity:1, transformOrigin: "center bottom"})
         .to("#baseL, #baseR", .1, {opacity:1})
+        .add( function(){ plopAudio.play() } )
         .to("#baseL, #baseR", .5, {scale:1},'-=.1')
+        .add( function(){ plopAudio.play() } )
         .to("#baseL1, #baseL2, #baseR1, #baseR2", .1, {opacity:1})
+        .add( function(){ plopAudio.play() } )
         .to("#baseL1, #baseL2, #baseR1, #baseR2", .5, {scale:1},'-=.1')
+        .add( function(){ plopAudio.play() } )
         .to("#flowerL, #flowerR", .5, {opacity:1});
 
 var tlAniTwo = new TimelineMax({onComplete:function(){tlCan.play()}});

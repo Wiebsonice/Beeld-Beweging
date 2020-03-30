@@ -87,3 +87,10 @@ svg#groei {
 #base {
     z-index: 1000;
 }
+
+.audio-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
