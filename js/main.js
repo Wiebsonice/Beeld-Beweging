@@ -9,6 +9,11 @@ gsap.set("#baseR", {scale:.2,opacity:0, transformOrigin: "left bottom"})
 gsap.set("#baseR1", {scale:.2, opacity:0, transformOrigin: "right bottom"})
 gsap.set("#baseR2", {scale:.2, opacity:0, transformOrigin: "left center"})
 
+gsap.set(".st2", {opacity:0, transformOrigin: "center top"})
+gsap.set(".st0", {opacity:0, scale:.1, transformOrigin: "center top"})
+gsap.set(".st1", {opacity:0, scale:.1, transformOrigin: "center top"})
+gsap.set("svg", {marginTop:100, transformOrigin: "center top"})
+
 var ani1HasStarted = false;
 var ani2HasStarted = false;
 var ani3HasStarted = false;
@@ -25,9 +30,18 @@ document.querySelectorAll('.anibtn').forEach(item => {
             tlAniOne.reverse()
             return
         }
-
     } else if (item.className.includes("2")) {
-
+        if (ani2HasStarted === false) {
+            ani2HasStarted = true;
+            tlAniTwo.play()
+            return
+        } else if (ani2HasStarted === true) {
+            ani2HasStarted = false;
+            tlAniTwo.reverse();
+            tlCan.restart();
+            tlCan.pause();
+            return
+        }
     } else if (item.className.includes("3")) {
 
     }
@@ -44,4 +58,28 @@ tlAniOne.pause()
         .to("#baseL, #baseR", .5, {scale:1},'-=.1')
         .to("#baseL1, #baseL2, #baseR1, #baseR2", .1, {opacity:1})
         .to("#baseL1, #baseL2, #baseR1, #baseR2", .5, {scale:1},'-=.1')
-        .to("#flowerL, #flowerR", .5, {opacity:1})
+        .to("#flowerL, #flowerR", .5, {opacity:1});
+
+var tlAniTwo = new TimelineMax({onComplete:function(){tlCan.play()}});
+
+tlAniTwo.pause()
+        .to(".st2", .5, {scale:1, opacity:1})
+        .to(".st0,.st1", .2, { opacity:1 })
+        .to(".st0", 1, { scale:1, ease: "back.out(1.7)" })
+        .to("svg",.5, {marginTop:50, ease: "back.out(1.7)"}, '-=.8')
+        .to(".st1",.7, { scale:.8, ease: "back.out(1.7)" },'-=.6')
+
+
+var tlCan = new TimelineMax({repeat:-1, paused:true});
+    tlCan.to('svg', 3, { y:'-=30', x:'+=20',  rotation:'-=5', ease:Power1.easeInOut})
+         .to('svg', 2, { y:'+=30', x:'-=20', rotation:'-=5', ease:Power1.easeInOut})
+         .to('svg', 3, { y:'-=20',  rotation:'+=5', ease:Power1.easeInOut})
+         .to('svg', 3, { y:'+=20',  rotation:'+=5', ease:Power1.easeInOut})
+         .to('svg', 3, { y:'-=50', ease:Power1.easeInOut})
+         .to('svg', 3, { y:'+=50', ease:Power1.easeInOut})
+         .to('svg', 3, { y:'-=30', ease:Power1.easeInOut})
+         .to('svg', 3, { y:'+=30', ease:Power1.easeInOut})
+         .to('svg', 2, { y:'-=30', ease:Power1.easeInOut})
+         .to('svg', 2, { y:'+=30', ease:Power1.easeInOut})
+
+        TweenLite.to(tlCan, 27, {ease:Power1.easeInOut})
