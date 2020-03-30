@@ -43,7 +43,19 @@ document.querySelectorAll('.anibtn').forEach(item => {
             return
         }
     } else if (item.className.includes("3")) {
-
+        // if (ani3HasStarted === false) {
+        //     ani3HasStarted = true;
+        //     tlAniThree.play()
+        //     return
+        // } else if (ani3HasStarted === true) {
+        //     ani3HasStarted = false;
+        //     tlAniThree.pause();
+        //     tlAniThree.restart();
+        //     // tlCan.restart();
+        //     // tlCan.pause();
+        //     return
+        // }
+        tlAniThree.restart();
     }
   })
 })
@@ -83,3 +95,80 @@ var tlCan = new TimelineMax({repeat:-1, paused:true});
          .to('svg', 2, { y:'+=30', ease:Power1.easeInOut})
 
         TweenLite.to(tlCan, 27, {ease:Power1.easeInOut})
+
+
+var tlAniThree = new TimelineMax();
+
+tlAniThree.pause()
+        .to("svg", .5, {marginTop:50, ease: "back.out(1.7)"})
+        .to("svg", .5, {rotation:360, transformOrigin:"center 47%"})
+        .to("svg", .5, {marginTop:100, ease: "back.in(1.7)"})
+
+
+
+
+
+
+// ---------- ! icons ! ------------
+
+const can = document.querySelector(".launch");
+
+const randomX = random(10, 20);
+const randomY = random(20, 30);
+const randomDelay = random(0, 1);
+const randomTime = random(3, 5);
+const randomTime2 = random(5, 10);
+const randomAngle = random(8, 12);
+
+TweenLite.set(can, {
+  x: randomX(-1),
+  y: randomX(1),
+  rotation: randomAngle(-1)
+});
+
+moveX(can, 1);
+moveY(can, -1);
+rotate(can, 1);
+
+function rotate(target, direction) {
+
+  TweenLite.to(target, randomTime2(), {
+    rotation: randomAngle(direction),
+    // delay: randomDelay(),
+    ease: Sine.easeInOut,
+    onComplete: rotate,
+    onCompleteParams: [target, direction * -1]
+  });
+}
+
+function moveX(target, direction) {
+
+  TweenLite.to(target, randomTime(), {
+    x: randomX(direction),
+    ease: Sine.easeInOut,
+    onComplete: moveX,
+    onCompleteParams: [target, direction * -1]
+  });
+}
+
+function moveY(target, direction) {
+
+  TweenLite.to(target, randomTime(), {
+    y: randomY(direction),
+    ease: Sine.easeInOut,
+    onComplete: moveY,
+    onCompleteParams: [target, direction * -1]
+  });
+}
+
+function random(min, max) {
+  const delta = max - min;
+  return (direction = 1) => (min + delta * Math.random()) * direction;
+}
+
+
+var saltoIcon = new TimelineMax({repeat:-1, repeatDelay:2});
+
+saltoIcon.to(".salto", 2, {marginTop:"-50", ease: "back.out(1.7)"})
+         .to(".salto", 2, {rotation:360, transformOrigin:"center 47%"}, '-=.5')
+         .to(".salto", 2, {marginTop:50, ease: "back.in(1.7)"}, '-=.5')

@@ -37,6 +37,46 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: ease box-shadow .5s;
+    position: relative;
+}
+
+.anibtn:hover {
+    -webkit-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.75);
+}
+
+.inner-launch {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.launch {
+    height: 70%;
+    /* transition: ease all .5s; */
+}
+
+.grow {
+    height: 70%;
+}
+
+.salto {
+    height: 50%;
+    margin-top: 10%;
+}
+
+/* .inner-launch:hover .launch{
+    height: 80%;
+} */
+
+svg#groei {
+    height: 80%;
 }
 
 #flower1 {
