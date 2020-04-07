@@ -46,6 +46,9 @@ document.querySelectorAll('.anibtn').forEach(item => {
             rocketAudio.pause();
             tlCan.restart();
             tlCan.pause();
+
+            tlFlame.restart();
+            tlFlame.pause();
             return
         }
     } else if (item.className.includes("3")) {
@@ -87,7 +90,7 @@ tlAniOne.pause()
         .add( function(){ plopAudio.play() } )
         .to("#flowerL, #flowerR", .5, {opacity:1});
 
-var tlAniTwo = new TimelineMax({onComplete:function(){tlCan.play()}});
+var tlAniTwo = new TimelineMax({onComplete:function(){tlCan.play(); tlFlame.play()}});
 
 tlAniTwo.pause()
         .to(".st2", .5, {scale:1, opacity:1})
@@ -111,13 +114,20 @@ var tlCan = new TimelineMax({repeat:-1, paused:true});
 
         TweenLite.to(tlCan, 27, {ease:Power1.easeInOut})
 
+var tlFlame = new TimelineMax({repeat:-1, yoyo:true});
+
+tlFlame.pause()
+        .to(".st1, .st0", .1, {scale:.95})
+        .to(".st1, .st0", .1, {scale:1})
+
+
 
 var tlAniThree = new TimelineMax();
 
 tlAniThree.pause()
-        .to("svg", .5, {marginTop:50, ease: "back.out(1.7)"})
+        .to("svg", .5, {marginTop:"-10vh", ease: "back.out(1.7)"})
         .to("svg", .5, {rotation:360, transformOrigin:"center 47%"})
-        .to("svg", .5, {marginTop:100, ease: "back.in(1.7)"})
+        .to("svg", .5, {marginTop:"10vh", ease: "back.in(1.7)"})
 
 
 
@@ -126,10 +136,10 @@ tlAniThree.pause()
 
 // ---------- ! icons ! ------------
 
-const can = document.querySelector(".launch");
+const can = document.querySelector(".bird");
 
-const randomX = random(10, 20);
-const randomY = random(20, 30);
+const randomX = random(0, 300);
+const randomY = random(-50, 10);
 const randomDelay = random(0, 1);
 const randomTime = random(3, 5);
 const randomTime2 = random(5, 10);
@@ -181,9 +191,119 @@ function random(min, max) {
   return (direction = 1) => (min + delta * Math.random()) * direction;
 }
 
+const canone = document.querySelector(".birdone");
 
-var saltoIcon = new TimelineMax({repeat:-1, repeatDelay:2});
+// const randomX = random(10, 200);
+// const randomY = random(20, 300);
+// const randomDelay = random(0, 1);
+// const randomTime = random(3, 5);
+// const randomTime2 = random(5, 10);
+// const randomAngle = random(8, 12);
 
-saltoIcon.to(".salto", 2, {marginTop:"-50", ease: "back.out(1.7)"})
-         .to(".salto", 2, {rotation:360, transformOrigin:"center 47%"}, '-=.5')
-         .to(".salto", 2, {marginTop:50, ease: "back.in(1.7)"}, '-=.5')
+TweenLite.set(canone, {
+  x: randomX(-1),
+  y: randomX(1),
+  rotation: randomAngle(-1)
+});
+
+moveX(canone, 1);
+moveY(canone, -1);
+rotate(canone, 1);
+
+function rotate(target, direction) {
+
+  TweenLite.to(target, randomTime2(), {
+    rotation: randomAngle(direction),
+    // delay: randomDelay(),
+    ease: Sine.easeInOut,
+    onComplete: rotate,
+    onCompleteParams: [target, direction * -1]
+  });
+}
+
+function moveX(target, direction) {
+
+  TweenLite.to(target, randomTime(), {
+    x: randomX(direction),
+    ease: Sine.easeInOut,
+    onComplete: moveX,
+    onCompleteParams: [target, direction * -1]
+  });
+}
+
+function moveY(target, direction) {
+
+  TweenLite.to(target, randomTime(), {
+    y: randomY(direction),
+    ease: Sine.easeInOut,
+    onComplete: moveY,
+    onCompleteParams: [target, direction * -1]
+  });
+}
+
+function random(min, max) {
+  const delta = max - min;
+  return (direction = 1) => (min + delta * Math.random()) * direction;
+}
+
+const cantwo = document.querySelector(".birdtwo");
+
+// const randomX = random(10, 200);
+// const randomY = random(20, 300);
+// const randomDelay = random(0, 1);
+// const randomTime = random(3, 5);
+// const randomTime2 = random(5, 10);
+// const randomAngle = random(8, 12);
+
+TweenLite.set(cantwo, {
+  x: randomX(-1),
+  y: randomX(1),
+  rotation: randomAngle(-1)
+});
+
+moveX(cantwo, 1);
+moveY(cantwo, -1);
+rotate(cantwo, 1);
+
+function rotate(target, direction) {
+
+  TweenLite.to(target, randomTime2(), {
+    rotation: randomAngle(direction),
+    // delay: randomDelay(),
+    ease: Sine.easeInOut,
+    onComplete: rotate,
+    onCompleteParams: [target, direction * -1]
+  });
+}
+
+function moveX(target, direction) {
+
+  TweenLite.to(target, randomTime(), {
+    x: randomX(direction),
+    ease: Sine.easeInOut,
+    onComplete: moveX,
+    onCompleteParams: [target, direction * -1]
+  });
+}
+
+function moveY(target, direction) {
+
+  TweenLite.to(target, randomTime(), {
+    y: randomY(direction),
+    ease: Sine.easeInOut,
+    onComplete: moveY,
+    onCompleteParams: [target, direction * -1]
+  });
+}
+
+function random(min, max) {
+  const delta = max - min;
+  return (direction = 1) => (min + delta * Math.random()) * direction;
+}
+
+
+// var saltoIcon = new TimelineMax({repeat:-1, repeatDelay:2});
+//
+// saltoIcon.to(".salto", 2, {marginTop:"-50", ease: "back.out(1.7)"})
+//          .to(".salto", 2, {rotation:360, transformOrigin:"center 47%"}, '-=.5')
+//          .to(".salto", 2, {marginTop:50, ease: "back.in(1.7)"}, '-=.5')
