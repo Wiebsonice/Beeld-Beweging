@@ -76,17 +76,26 @@ svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: ease box-shadow .5s;
+    transition: ease box-shadow .5s, ease border .5s;
     position: relative;
     -webkit-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.75);
+    border: 1px solid white;
 }
 
 .anibtn:hover {
-    -webkit-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0);
-    -moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0);
-    box-shadow: 0px 6px 5px 0px rgba(0,0,0,0);
+    -webkit-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.5);
+    border: 1px solid rgba(0,0,0,.0);
+}
+
+.anibtn:active {
+    -webkit-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.0);
+    -moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.0);
+    box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.0);
+    border: 1px solid rgba(0,0,0,.0);
 }
 
 .inner-launch {
@@ -100,17 +109,16 @@ svg {
     justify-content: center;
 }
 .launch {
-    height: 70%;
+    height: 120%;
     /* transition: ease all .5s; */
 }
 
 .grow {
-    height: 70%;
+    height: 120%;
 }
 
 .salto {
-    height: 50%;
-    margin-top: 10%;
+    height: 120%;
 }
 
 /* .inner-launch:hover .launch{

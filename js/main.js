@@ -302,8 +302,10 @@ function random(min, max) {
 }
 
 
-// var saltoIcon = new TimelineMax({repeat:-1, repeatDelay:2});
-//
-// saltoIcon.to(".salto", 2, {marginTop:"-50", ease: "back.out(1.7)"})
-//          .to(".salto", 2, {rotation:360, transformOrigin:"center 47%"}, '-=.5')
-//          .to(".salto", 2, {marginTop:50, ease: "back.in(1.7)"}, '-=.5')
+
+
+var saltoIcon = new TimelineMax({repeat:-1, repeatDelay:2});
+
+saltoIcon.to(".salto", .6, {marginTop:"-10", ease: "back.out(1.7)"})
+         .to(".salto", 1.5, {rotation:360, transformOrigin:"center 51%"}, '-=.5')
+         .to(".salto", .6, {marginTop:0, ease: "back.in(1.7)"}, '-=.5')
